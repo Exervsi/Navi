@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Navi.Tests/Navi.Tests.csproj" />
+  <Project Path="Navi/Navi.csproj" />
+</Solution>
