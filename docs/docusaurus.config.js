@@ -10,8 +10,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Navi',
+  tagline: 'Hey Listen! A C# library for building documentation websites.',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -31,7 +31,7 @@ const config = {
   projectName: 'Navi', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-
+  //onBrokenLinks: 'warn',
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -83,7 +83,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: 'Navi',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -110,27 +110,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'API Reference',
                 to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus',
-              },
-            ],
           },
           {
             title: 'More',

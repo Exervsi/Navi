@@ -113,7 +113,8 @@ public class Namespace : InfoItem
         Name = name;
         Parent = parent as InfoItem;
         Namespaces = new Namespace[0];
-        Types = types.Where(x => x.Namespace == name && !x.Name.Contains("<>c"))
+        Types = types.Where(x => x.Namespace == name && !x.Name.Contains("<>c")
+        && x.IsPublic)
             .Select(x => new InfoItems.Type(x, this))
             .ToArray();
     }

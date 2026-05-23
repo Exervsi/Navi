@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Navi.Docs/Navi.Docs.csproj" Id="e6d32153-1fc4-4e14-a49a-c22484ab12ed" />
   <Project Path="Navi.Tests/Navi.Tests.csproj" />
   <Project Path="Navi/Navi.csproj" />
 </Solution>

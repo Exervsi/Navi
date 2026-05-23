@@ -172,20 +172,20 @@ namespace Navi.Markdown
                 if (items[i] is Namespace ns)
                 {
                     string name = ns.Name;
-                    string path = Navi.Core.SystemExtensions.String.Wakka.BuildUrl(ns);
-                    result[i, 0] = Navi.Core.SystemExtensions.String.Wakka.HyperLink(name, path);
+                    string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(ns);
+                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
                 }
                 if (items[i] is InfoItems.Type type)
                 {
                     string name = type.Name;
-                    string path = Navi.Core.SystemExtensions.String.Wakka.BuildUrl(type);
-                    result[i, 0] = Navi.Core.SystemExtensions.String.Wakka.HyperLink(name, path);
+                    string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(type);
+                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
                 }
                 if (items[i] is Constructor constructor)
                 {
-                    string name = items[i].Name + "(" + string.Join(", ", constructor.Parameters.Select(p => '`' + p.Data.ParameterType.Name + '`'));
-                    string path = Navi.Core.SystemExtensions.String.Wakka.BuildUrl(constructor);
-                    result[i, 0] = Navi.Core.SystemExtensions.String.Wakka.HyperLink(name, path);
+                    string name = constructor.Parent.Name + "(" + string.Join(", ", constructor.Parameters.Select(p => '`' + p.Data.ParameterType.Name + '`')) + ')';
+                    string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(constructor);
+                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
                 }
                 result[i,1] = items[i].Value;
             }
@@ -230,7 +230,7 @@ namespace Navi.Markdown
                 if (items[i] is Method method)
                 {
                     result[i, 0] = '`' + method.Return.Type.ToString() + '`';
-                    result[i, 1] = Navi.Core.SystemExtensions.String.Wakka.HyperLink(items[i].Name, Navi.Core.SystemExtensions.String.Wakka.BuildUrl(items[i]));
+                    result[i, 1] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(items[i].Name, Navi.Core.SystemExtensions.String.PathBuilders.BuildUrl(items[i]));
                 }
                 result[i, 2] = items[i].Value;
             }

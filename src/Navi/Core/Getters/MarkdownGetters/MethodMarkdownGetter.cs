@@ -2,6 +2,7 @@
 using Navi.Core.SystemExtensions.String;
 using Navi.InfoItems;
 using Navi.Markdown;
+using System.Data.Common;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -34,14 +35,20 @@ internal struct MethodMarkdownGetter :InfoItemMarkdownGetter
         string typeParameterString = "**Type Parameters :** \n\n";
         string parameterString = "**Parameters :** \n\n";
         string returnString = $"**Returns :** `{_methodItem.Return.Type}`";
+        if (_methodItem.Return.Type != "void")
+            returnString += " : " + _methodItem.Return.Value + "\n\n";
+
+
         foreach (InfoItems.Parameter parameter in _methodItem.Parameters)
-            parameterString += "`" + parameter.Data.ParameterType + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
+        parameterString += "`" + parameter.Data.ParameterType + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
 
         if (_methodItem.Parameters.Length > 0)
         {
             parameterString = parameterString.Substring(0, parameterString.Length - 2);
             result.Elements.Add(new Text(parameterString));
         }
+
+
 
         result.Elements.Add(new Text(returnString));
 

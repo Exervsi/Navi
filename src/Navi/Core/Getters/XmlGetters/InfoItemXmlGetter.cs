@@ -11,7 +11,7 @@ internal abstract class InfoItemXmlGetter
 {
     internal InfoItem _infoItem { get; set; }
 
-    internal XElement? Element => Wakka.LoadXml(_infoItem.Root.DocumentationPath, Key);
+    internal XElement? Element => PathBuilders.LoadXml(_infoItem.Root.DocumentationPath, Key);
 
     internal abstract string Key { get; }
 

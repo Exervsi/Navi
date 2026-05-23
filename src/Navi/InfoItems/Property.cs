@@ -105,7 +105,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the XML element representing this property from the documentation, or <c>null</c> if not found.
         /// </summary>
-        internal XElement? Element => Wakka.LoadXml(Root.DocumentationPath, Key);
+        internal XElement? Element => PathBuilders.LoadXml(Root.DocumentationPath, Key);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class.

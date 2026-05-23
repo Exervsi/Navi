@@ -108,7 +108,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the XML documentation element for this type, if available.
         /// </summary>
-        private XElement? Element => Wakka.LoadXml(Root.DocumentationPath, Key);
+        private XElement? Element => PathBuilders.LoadXml(Root.DocumentationPath, Key);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Type"/> class using reflection metadata and a parent namespace.
@@ -123,7 +123,10 @@ namespace Navi.InfoItems
             // Parent and children initialization
             Parent = parent;
             List<InfoItem> list = new List<InfoItem>();
-            Constructors = Data.GetConstructors()
+            Constructors = Data.GetConstructors(BindingFlags.Instance |
+                                                  BindingFlags.Static |
+                                                  BindingFlags.Public |
+                                                  BindingFlags.DeclaredOnly)
                 .Select(x => new Constructor(x, this))
                 .ToArray();
 
@@ -139,13 +142,13 @@ namespace Navi.InfoItems
 
             list.AddRange(Methods);
 
-            Fields = Data.GetFields()
+            Fields = Data.GetFields(BindingFlags.Public)
                 .Select(x => new Field(x, this))
                 .ToArray();
 
             list.AddRange(Fields);
 
-            Properties = Data.GetProperties()
+            Properties = Data.GetProperties(BindingFlags.Public)
                 .Select(x => new Property(x, this))
                 .ToArray();
 

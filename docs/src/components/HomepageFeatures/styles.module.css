@@ -5,7 +5,9 @@
   width: 100%;
 }
 
-.featureSvg {
+.featurGif {
+  display: flex;
+  align-items: center;
   height: 200px;
   width: 200px;
 }

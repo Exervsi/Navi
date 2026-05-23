@@ -78,7 +78,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the XML documentation element for this field, or <c>null</c> if not found.
         /// </summary>
-        internal XElement? Element => Wakka.LoadXml(Root.DocumentationPath, Key);
+        internal XElement? Element => PathBuilders.LoadXml(Root.DocumentationPath, Key);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Field"/> class using the specified field metadata and parent type.

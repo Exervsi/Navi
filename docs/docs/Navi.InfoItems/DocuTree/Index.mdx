@@ -1,0 +1,25 @@
+---
+sidebar_label: DocuTree
+sidebar_position: 4
+---
+
+# DocuTree
+
+Navi.InfoItems.DocuTree
+
+Represents the root of a documentation tree for a .NET assembly, providing access to namespaces,
+            types, and their associated XML documentation.
+
+## Constructors
+
+| Constructor                                    | Description                                                                                         |
+| ---------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| [DocuTree(`String`, `String`)](./Constructors) | Initializes a new instance of the  class, loading the specified assembly and its XML documentation. |
+
+## Methods
+
+| Type                             | Method                                                           | Description                                                                                    |
+| -------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/DocuTree/GetMarkdown)         | Gets a markdown representation of the documentation tree.                                      |
+| `System.Void`                    | [PrintDocusaurus](../../Navi.InfoItems/DocuTree/PrintDocusaurus) | Exports the current DocuTree instance to a Docusaurus-compatible format at the specified path. |
+

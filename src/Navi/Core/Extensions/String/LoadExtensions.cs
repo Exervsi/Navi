@@ -11,7 +11,7 @@ namespace Navi.Core.SystemExtensions.String
     /// <summary>
     /// Provides extension methods for loading assemblies and their XML documentation from file paths.
     /// </summary>
-    public static class LoadExtensions
+    internal static class LoadExtensions
     {
         /// <summary>
         /// Attempts to load a .NET assembly from the specified file path.
@@ -23,7 +23,7 @@ namespace Navi.Core.SystemExtensions.String
         /// <returns>
         /// <c>true</c> if the assembly was successfully loaded; otherwise, <c>false</c>.
         /// </returns>
-        public static bool TryLoadAssembly(this string assemblyPath, out Assembly? assembly)
+        internal static bool TryLoadAssembly(this string assemblyPath, out Assembly? assembly)
         {
 
             if (File.Exists(assemblyPath) && (assemblyPath.EndsWith(".dll")))

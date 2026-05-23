@@ -27,7 +27,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the documentation URL path for this method.
         /// </summary>
-        public string Path => Wakka.BuildUrl(this);
+        public string Path => PathBuilders.BuildUrl(this);
 
         /// <summary>
         /// Gets a child <see cref="InfoItem"/> by name, or null if not found.

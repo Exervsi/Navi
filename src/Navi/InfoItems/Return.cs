@@ -1,5 +1,6 @@
 ﻿using Navi.Markdown;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace Navi.InfoItems
 {
@@ -31,10 +32,30 @@ public class Return : InfoItem
     {
         get
         {
-            string xmlKey = "";
             if (Parent is Method method)
-                xmlKey = method.Element?.Elements("returns").FirstOrDefault()?.Value.Trim();
-            return xmlKey;
+            {
+                XElement? element = method.Element?.Elements("returns").FirstOrDefault();
+                if (element is not null)
+                {
+                    //TO DO : Find cref in tree.
+                    string value = "";
+                    foreach (XNode node in element.Nodes())
+                    {
+                        if (node is XElement el && el.Name == "see" && el.Attribute("cref") is not null)
+                        {
+                            string crefValue = el.Attribute("cref").Value.TrimStart('T', ':');
+                                value += crefValue;
+                        }
+                        else
+                        {
+                            value += node.ToString();
+                        }
+
+                    }
+                    return value;
+                }
+            }
+                return string.Empty;
         }
     }
 

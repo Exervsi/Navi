@@ -2,46 +2,30 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Intro
 
 Let's discover **Docusaurus in less than 5 minutes**.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+For now Navi can only make markdown trees and print out docusuaurus files.
+Your code will look like this.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+```chsarp
+using Navi.InfoItems;
 
-### What you'll need
+string dllPath = @"..\..\..\..\Navi\bin\Debug\netstandard2.0\Navi.dll";
+string xmlPath = @"..\..\..\..\Navi\bin\Debug\netstandard2.0\Navi.xml";
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Console.WriteLine("Hey Listen! Generating tree...");
+DocuTree theGreatDekuTree = new DocuTree(dllPath, xmlPath);
 
-## Generate a new site
+Console.WriteLine("Hey Listen! Writing Markdown...");
+theGreatDekuTree.PrintDocusaurus(@"..\..\..\..\..\docs\docs\");
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+Console.WriteLine("Hey Listen! Tree written!");
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+So you only need to know three paths. The path to the .dll and .xml created with your project's build action, along with where you want the docusaurus files to save to.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+That's it!
