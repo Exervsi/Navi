@@ -3,14 +3,13 @@ import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
 const FeatureList = [
-
 ];
 
-function Feature({Gif, title, description}) {
+function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <img src={Gif} className={styles.featureGif} alt={title} />
+        <img src={Svg} className={styles.featureGif} alt={title} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
