@@ -4,13 +4,6 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Hey Listen!',
-    Gif: require('@site/static/img/hey-listen.gif').default,
-    description: (
-      <>
-        Open source tool for building documentation websites with C#.
-      </>
-    ),
   },
 ];
 
