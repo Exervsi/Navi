@@ -17,13 +17,8 @@ using Navi.InfoItems;
 string dllPath = @"..\..\..\..\Navi\bin\Debug\netstandard2.0\Navi.dll";
 string xmlPath = @"..\..\..\..\Navi\bin\Debug\netstandard2.0\Navi.xml";
 
-Console.WriteLine("Hey Listen! Generating tree...");
-DocuTree theGreatDekuTree = new DocuTree(dllPath, xmlPath);
-
-Console.WriteLine("Hey Listen! Writing Markdown...");
-theGreatDekuTree.PrintDocusaurus(@"..\..\..\..\..\docs\docs\");
-
-Console.WriteLine("Hey Listen! Tree written!");
+DocuTree docuTree = new DocuTree(dllPath, xmlPath);
+docuTree.PrintDocusaurus(@"..\..\..\..\..\docs\docs\");
 ```
 
 So you only need to know three paths. The path to the .dll and .xml created with your project's build action, along with where you want the docusaurus files to save to.
