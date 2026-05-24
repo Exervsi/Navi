@@ -28,7 +28,7 @@ internal class TypeTreeGetter : InfoItemTreeGetter
             result.AddRange(Properties);
             return result.ToArray();
         }
-    
+
     }
 
     internal Constructor[] Constructors =>
@@ -64,10 +64,24 @@ internal class TypeTreeGetter : InfoItemTreeGetter
                 .Select(x => new Property(x, _typeItem))
                 .ToArray();
 
-    internal TypeParameter[] TypeParameters =>
-        _typeItem.Data.GetGenericArguments()
-            .Select(x => new TypeParameter(x, _typeItem))
-            .ToArray();
+    internal TypeParameter[] TypeParameters
+    {
+        get
+        {
+            System.Type[] genericArguments = new System.Type[0];
+            try
+            {
+                genericArguments = _typeItem.Data.GetGenericArguments();
+            }
+            catch { }
+            
+            return genericArguments.Select(x => new TypeParameter(x, _typeItem))
+                .ToArray();
+
+        }
+    
+    }
+
 
     internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
 

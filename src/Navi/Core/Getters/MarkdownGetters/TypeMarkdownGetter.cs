@@ -22,15 +22,15 @@ internal struct TypeMarkdownGetter :InfoItemMarkdownGetter
     {
         get
         {
-            string result = _typeItem.Name;
+            string result = _typeItem.Data.Name;
 
             if (_typeItem.TypeParameters.Length > 0)
             {
-                result = Name.Split('`')[0] + '<';
+                result = result.Split('`')[0] + '<';
                 for (int i = 0; i < _typeItem.TypeParameters.Length; i++)
                     result += _typeItem.TypeParameters[i].Data.Name + ',';
 
-                result = result.Substring(0, Name.Length - 1);
+                result = result.Substring(0, result.Length - 1);
                 result += '>';
             }
             return result;

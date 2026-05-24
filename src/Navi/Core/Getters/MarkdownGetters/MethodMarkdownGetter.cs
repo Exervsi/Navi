@@ -18,7 +18,7 @@ internal struct MethodMarkdownGetter :InfoItemMarkdownGetter
         _methodItem = methodItem;
     }
 
-    public string Name => _methodItem.Name;
+    public string Name => _methodItem.Data.Name;
 
     public IMarkdownElement Markdown()
     {

@@ -29,7 +29,7 @@ internal struct ConstructorMarkdownGetter :InfoItemMarkdownGetter
             {
                 foreach (InfoItems.Parameter parameter in _constructorItem.Parameters)
                     result += parameter.Data.ParameterType.Name + ',';
-                result = result.Substring(0, Name.Length - 1);
+                result = result.Substring(0, result.Length - 1);
             }
             result += ')';
             return result;
@@ -42,7 +42,7 @@ internal struct ConstructorMarkdownGetter :InfoItemMarkdownGetter
     {
         Page result = new Page();
 
-        string header = _constructorItem.Name;
+        string header = Name;
 
         if (!header.EndsWith(")"))
             header += "()";
