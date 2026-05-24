@@ -31,11 +31,23 @@ internal class MethodXmlGetter : InfoItemXmlGetter
             IEnumerable<string> parameterStrings = methodItem.Parameters.Select(x =>
             {
                 var type = x.Data.ParameterType;
-                List<string> typeParameterNames = methodItem.TypeParameters.Select(x => x.Name).ToList();
-                if (typeParameterNames.Contains(type.Name))
-                    return "``" + typeParameterNames.IndexOf(type.Name);
-                
-                return type.FullName;
+                List<string> typeParameterNames = methodItem.TypeParameters.Select(tp => tp.Name).ToList();
+
+                string GetTypeString(System.Type t)
+                {
+                    if (typeParameterNames.Contains(t.Name))
+                        return "``" + typeParameterNames.IndexOf(t.Name);
+                    if (t.IsGenericType)
+                    {
+                        System.Type tt = t.GetGenericTypeDefinition();
+                        string genericTypeName = t.GetGenericTypeDefinition().FullName.Split('`')[0];
+                        string genericArgs = string.Join(",", t.GetGenericArguments().Select(GetTypeString));
+                        return $"{genericTypeName}{{{genericArgs}}}";
+                    }
+                    return t.FullName;
+                }
+
+                return GetTypeString(type);
             });
             result += $"({string.Join(",", parameterStrings)})";
 

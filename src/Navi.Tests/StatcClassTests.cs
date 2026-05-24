@@ -72,12 +72,15 @@ public class StaticClassTests
 
         Method[] methods = type.Methods;
         methods.Should().NotBeNull();
-        methods.Length.Should().Be(1);
+        methods.Length.Should().Be(2);
 
         methods[0].Value.Should().Be("This is a test extension method");
-
         Return returnItem = methods[0].Return;
         methods[0].Return.Value.Should().Be("returns the same string.");
+
+        methods[1].Value.Should().Be("This is a test extension method with a generic type parameter.");
+        methods[1].TypeParameters.Length.Should().Be(1);
+        
 
 
         string result = methods[0].GetMarkdown().Markdown;
@@ -87,6 +90,21 @@ public class StaticClassTests
             "**Parameters :** \n\n" +
             "`String` a : A\n\n" +
             "**Returns :** `String` : returns the same string.\n\n\n\n";
+
+        result.Should().Be(expected);
+
+
+        result = methods[1].GetMarkdown().Markdown;
+
+        expected = "# List`1 TypedExtensionMethod``1(System.Collections.Generic.List{``0})\n\n" +
+            "This is a test extension method with a generic type parameter.\n\n" +
+            "**Parameters :** \n\n" +
+            "`List`1` a : A\n\n" +
+            "**Returns :** `List`1` : \n\n\n\n";
+
+        result.Should().Be(expected);
+
+
     }
     [Test]
     public void GetMarkdown()
@@ -96,20 +114,17 @@ public class StaticClassTests
         string result = type.GetMarkdown().Markdown;
         result.Should().NotBeNullOrEmpty();
 
-
-
         string expected = "# TestStaticClass\n\n" +
             "Navi.Tests.Types.TestStaticClass\n\n" +
-            "Class for Testing\n\n" +
-            "## Properties\n\n" +
+            "Class for Testing\n\n## Properties\n\n" +
             "| Type     | Property       | Description                |\n" +
             "| -------- | -------------- | -------------------------- |\n" +
             "| `String` | StaticProperty | This is a static Property. |\n\n" +
             "## Methods\n\n" +
-            "| Type     | Method                                                                               | Description                     |\n" +
-            "| -------- | ------------------------------------------------------------------------------------ | ------------------------------- |\n" +
-            "| `String` | [ExtensionMethod](../../Navi.Tests/Navi.Tests.Types/TestStaticClass/ExtensionMethod) | This is a test extension method |\n\n";
-
+            "| Type     | Method                                                                                         | Description                                                    |\n" +
+            "| -------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |\n" +
+            "| `String` | [ExtensionMethod](../../Navi.Tests/Navi.Tests.Types/TestStaticClass/ExtensionMethod)           | This is a test extension method                                |\n" +
+            "| `List`1` | [TypedExtensionMethod](../../Navi.Tests/Navi.Tests.Types/TestStaticClass/TypedExtensionMethod) | This is a test extension method with a generic type parameter. |\n\n";
         result.Should().Be(expected);
 
     }

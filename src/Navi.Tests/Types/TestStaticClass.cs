@@ -26,4 +26,15 @@ public static class TestStaticClass
     {
         return a;
     }
+
+    /// <summary>
+    /// This is a test extension method with a generic type parameter.
+    /// </summary>
+    /// <typeparam name="T">T</typeparam>
+    /// <param name="a">A</param>
+    /// <returns></returns>
+    public static List<T> TypedExtensionMethod<T>(this List<T> a)
+    {
+        return a;
+    }
 }
