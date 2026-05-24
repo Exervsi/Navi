@@ -69,5 +69,7 @@ internal class TypeTreeGetter : InfoItemTreeGetter
             .Select(x => new TypeParameter(x, _typeItem))
             .ToArray();
 
+    internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
+
 
 }

@@ -9,5 +9,7 @@ namespace Navi.Core.Getters.MarkdownGetters;
 
 internal interface InfoItemMarkdownGetter
 {
+    string Name { get; }
+
     IMarkdownElement Markdown();
 }

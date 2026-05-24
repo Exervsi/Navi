@@ -31,4 +31,6 @@ internal class ConstructorTreeGetter : InfoItemTreeGetter
     internal InfoItems.Parameter[] Parameters => _constructorItem.Data.GetParameters()
                 .Select(x => new InfoItems.Parameter(x, _constructorItem))
                 .ToArray();
+
+    internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
 }

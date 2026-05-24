@@ -2,6 +2,7 @@
 using Navi.Core.SystemExtensions.String;
 using Navi.InfoItems;
 using Navi.Markdown;
+using Navi.MarkdownElement;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
@@ -11,11 +12,15 @@ namespace Navi.Core.Getters.MarkdownGetters;
 internal struct NamespaceMarkdownGetter :InfoItemMarkdownGetter
 {
     private Namespace _namespaceItem;
+    private string _name;
 
-    internal NamespaceMarkdownGetter(Namespace namespaceItem)
+    internal NamespaceMarkdownGetter(Namespace namespaceItem, string name)
     {
         _namespaceItem = namespaceItem;
+        _name = name;
     }
+
+    public string Name => _name;
 
     public IMarkdownElement Markdown()
     {

@@ -17,11 +17,13 @@ namespace Navi.InfoItems
     /// </remarks>
     public class Namespace : InfoItem
     {
-        private NamespaceMarkdownGetter _markdownGetter => new NamespaceMarkdownGetter(this);
+        private NamespaceMarkdownGetter _markdownGetter => new NamespaceMarkdownGetter(this, _name);
         private NamespaceXmlGetter _xmlGetter => new NamespaceXmlGetter(this);
         private NamespaceTreeGetter _treeGetter => new NamespaceTreeGetter(this);
+        private string _name;
 
-        public string Name { get; }
+
+        public string Name => _markdownGetter.Name;
 
         /// <summary>
         /// Gets or sets the internal path of the namespace.
@@ -93,7 +95,7 @@ namespace Navi.InfoItems
     /// <summary>
     /// Gets the attributes applied to this namespace.
     /// </summary>
-    public Attribute[] Attributes { get; }
+    public Attribute[] Attributes => _treeGetter.Attributes; 
 
     /// <summary>
     /// Sets the nested namespaces for this namespace.
@@ -121,7 +123,7 @@ namespace Navi.InfoItems
     /// <param name="types">The types defined in this namespace.</param>
     internal Namespace(string name, DocuTree parent, System.Type[] types)
     {
-        Name = name;
+        _name = name;
         Parent = parent as InfoItem;
         Namespaces = new Namespace[0];
         Types = types.Where(x => x.Namespace == name && !x.Name.Contains("<>c")

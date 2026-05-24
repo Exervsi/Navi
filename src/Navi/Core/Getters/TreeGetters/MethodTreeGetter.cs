@@ -39,4 +39,6 @@ internal class MethodTreeGetter : InfoItemTreeGetter
             .ToArray();
 
     internal InfoItems.Return Return => new Return(_methodItem.Data.ReturnParameter, _methodItem);
+
+    internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
 }

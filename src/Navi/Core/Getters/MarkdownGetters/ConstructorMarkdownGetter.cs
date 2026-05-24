@@ -17,6 +17,27 @@ internal struct ConstructorMarkdownGetter :InfoItemMarkdownGetter
         _constructorItem = constructorItem;
     }
 
+
+    public string Name
+    {
+        get
+        {
+            string result = _constructorItem.Parent.Name + '(';
+            
+
+            if (_constructorItem.Parameters.Length > 0)
+            {
+                foreach (InfoItems.Parameter parameter in _constructorItem.Parameters)
+                    result += parameter.Data.ParameterType.Name + ',';
+                result = result.Substring(0, Name.Length - 1);
+            }
+            result += ')';
+            return result;
+        }
+        
+
+    }
+
     public IMarkdownElement Markdown()
     {
         Page result = new Page();

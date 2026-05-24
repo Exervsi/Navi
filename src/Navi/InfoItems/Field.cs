@@ -1,4 +1,6 @@
 ﻿using Navi.Core.Getters;
+using Navi.Core.Getters.MarkdownGetters;
+using Navi.Core.Getters.TreeGetters;
 using Navi.Core.SystemExtensions.String;
 using Navi.Markdown;
 using System.Reflection;
@@ -13,12 +15,14 @@ namespace Navi.InfoItems
     /// </summary>
     public class Field : InfoItem
     {
+        private FieldMarkdownGetter _markdownGetter => new FieldMarkdownGetter(this);
+        private FieldTreeGetter _treeGetter => new FieldTreeGetter(this);
         private FieldXmlGetter _xmlGetter => new FieldXmlGetter(this);
 
         /// <summary>
         /// Gets or sets the name of the field.
         /// </summary>
-        public string Name { get; }
+        public string Name => _markdownGetter.Name;
 
         /// <summary>
         /// Gets the child <see cref="InfoItem"/> with the specified name, or <c>null</c> if not found.
@@ -54,26 +58,17 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the root <see cref="DocuTree"/> of the documentation tree.
         /// </summary>
-        public DocuTree Root
-        {
-            get
-            {
-                InfoItem parent = Parent;
-                while (parent.Parent is not null)
-                    parent = parent.Parent;
-                return parent as DocuTree;
-            }
-        }
+        public DocuTree Root => _treeGetter.Root;
 
         /// <summary>
         /// Gets or sets the child items of this field.
         /// </summary>
-        public InfoItem[] Children { get; set; }
+        public InfoItem[] Children => _treeGetter.Children;
 
         /// <summary>
         /// Gets or sets the attributes applied to this field.
         /// </summary>
-        public Attribute[] Attributes { get; set; }
+        public Attribute[] Attributes => _treeGetter.Attributes;
 
         /// <summary>
         /// Gets the XML documentation element for this field, or <c>null</c> if not found.
@@ -87,20 +82,14 @@ namespace Navi.InfoItems
         /// <param name="parent">The parent type in the documentation tree.</param>
         public Field(FieldInfo field, Type parent)
         {
-            Name = field.Name;
             Data = field;
             Parent = parent as InfoItem;
-            Children = new InfoItem[0];
-            Attributes = field.CustomAttributes.Select(x => new Attribute(x, this)).ToArray();
         }
 
         /// <summary>
         /// Returns a markdown representation of the field.
         /// </summary>
         /// <returns>A <see cref="IMarkdownElement"/> representing the field.</returns>
-        public IMarkdownElement GetMarkdown()
-        {
-            return new Markdown.Page();
-        }
+        public IMarkdownElement GetMarkdown() => _markdownGetter.Markdown();
     }
 }

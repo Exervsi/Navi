@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Navi.Markdown
+namespace Navi.MarkdownElement
 {
     /// <summary>
     /// Provides static methods for generating and formatting Markdown tables from various data sources.

@@ -30,7 +30,7 @@ namespace Navi.InfoItems
         {
             get
             {
-                string result = $"P:{(Parent as InfoItems.Type).FullName}.{Name}";
+                string result = $"P:{(Parent as InfoItems.Type).Data.FullName}.{Name}";
                 return result;
             }
         }

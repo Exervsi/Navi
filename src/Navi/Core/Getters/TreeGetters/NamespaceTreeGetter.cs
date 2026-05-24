@@ -32,5 +32,5 @@ internal class NamespaceTreeGetter : InfoItemTreeGetter
         }
     }
 
-
+    internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
 }

@@ -18,6 +18,8 @@ internal struct MethodMarkdownGetter :InfoItemMarkdownGetter
         _methodItem = methodItem;
     }
 
+    public string Name => _methodItem.Name;
+
     public IMarkdownElement Markdown()
     {
         Page result = new Page();

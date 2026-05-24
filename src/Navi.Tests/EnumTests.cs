@@ -1,7 +1,7 @@
 using FluentAssertions;
+using Navi.Core;
 using Navi.Core.SystemExtensions.String;
 using Navi.InfoItems;
-using Navi.Markdown;
 using NUnit.Framework.Constraints;
 using System.Reflection;
 
@@ -103,8 +103,8 @@ public class EnumTests
 
         InfoItems.Type type = docuTree["Navi.Tests"]["Types"]["TestEnumWithAttributes"] as InfoItems.Type;
 
-        Markdown.Tables.TryGetEnumTableValues(type, out string[,] values, true, false, true).Should().BeTrue();
-        Markdown.Tables.TryCreateTable(["Name", "Attribute A", "Attribute B"], values, out string result).Should().BeTrue();
+        Navi.MarkdownElement.Tables.TryGetEnumTableValues(type, out string[,] values, true, false, true).Should().BeTrue();
+        Navi.MarkdownElement.Tables.TryCreateTable(["Name", "Attribute A", "Attribute B"], values, out string result).Should().BeTrue();
 
 
         string expected =

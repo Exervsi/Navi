@@ -17,5 +17,7 @@ internal class ParameterTreeGetter : InfoItemTreeGetter
 
     internal override InfoItem[] Children => new InfoItem[0];
 
+    internal InfoItems.Attribute[] Attributes => new InfoItems.Attribute[0];
+
 
 }

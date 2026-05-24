@@ -72,7 +72,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets or sets the attributes associated with this parameter.
         /// </summary>
-        public Attribute[] Attributes { get; set; }
+        public Attribute[] Attributes { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Parameter"/> class.

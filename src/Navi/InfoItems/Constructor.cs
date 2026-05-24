@@ -37,7 +37,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the name of the constructor.
         /// </summary>
-        public string Name { get; }
+        public string Name => _markdownGetter.Name;
 
         /// <summary>
         /// Gets a child <see cref="InfoItem"/> by name, or null if not found.
@@ -88,7 +88,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the attributes applied to the constructor.
         /// </summary>
-        public Attribute[] Attributes { get; }
+        public Attribute[] Attributes => _treeGetter.Attributes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Constructor"/> class.
@@ -97,20 +97,8 @@ namespace Navi.InfoItems
         /// <param name="parent">The parent type of the constructor.</param>
         public Constructor(ConstructorInfo constructor, Type parent)
         {
-            Name = parent.Name + '(';
             Data = constructor;
             Parent = parent;
-
-            Attributes = new Attribute[0];
-
-            if (Parameters.Length > 0)
-            {
-                foreach (Parameter parameter in Parameters)
-                    Name += parameter.Data.ParameterType.Name + ',';
-                Name = Name.Substring(0, Name.Length - 1);
-            }
-            Name += ')';
-
         }
 
         /// <summary>

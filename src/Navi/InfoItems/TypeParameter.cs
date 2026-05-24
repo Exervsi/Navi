@@ -1,4 +1,5 @@
-﻿using Navi.Markdown;
+﻿using Navi.Core.Getters.MarkdownGetters;
+using Navi.Markdown;
 using System.Reflection;
 
 namespace Navi.InfoItems
@@ -9,6 +10,7 @@ namespace Navi.InfoItems
     /// </summary>
     public class TypeParameter : InfoItem
     {
+
         /// <summary>
         /// Gets the name of the type parameter.
         /// </summary>

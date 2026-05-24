@@ -22,7 +22,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the name of the method.
         /// </summary>
-        public string Name { get; }
+        public string Name => _markdownGetter.Name;
 
         /// <summary>
         /// Gets the documentation URL path for this method.
@@ -84,7 +84,7 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the attributes applied to this method.
         /// </summary>
-        public Attribute[] Attributes { get; }
+        public Attribute[] Attributes => _treeGetter.Attributes;
 
 
         /// <summary>
@@ -94,15 +94,8 @@ namespace Navi.InfoItems
         /// <param name="parent">The parent type containing this method.</param>
         public Method(MethodInfo method, Type parent)
         {
-            Name = method.Name;
-
-            if (Name.Contains("Method"))
-                Name = method.Name;
-
             Data = method;
-            Parent = parent as InfoItem;
-
-            Attributes = new Attribute[0];
+            Parent = parent;
         }
 
         /// <summary>
