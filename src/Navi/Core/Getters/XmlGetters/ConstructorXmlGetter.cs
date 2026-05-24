@@ -28,11 +28,23 @@ internal class ConstructorXmlGetter : InfoItemXmlGetter
             IEnumerable<string> parameterStrings = _constructorItem.Parameters.Select(x =>
             {
                 var type = x.Data.ParameterType;
-                List<string> typeParameterNames = (_constructorItem.Parent as InfoItems.Type).TypeParameters.Select(x => x.Name).ToList();
-                if (typeParameterNames.Contains(type.Name))
-                    return "`" + typeParameterNames.IndexOf(type.Name);
+                List<string> typeParameterNames = (_constructorItem.Parent as InfoItems.Type).TypeParameters.Select(tp => tp.Name).ToList();
 
-                return type.FullName;
+                string GetTypeString(System.Type t)
+                {
+                    if (typeParameterNames.Contains(t.Name))
+                        return "`" + typeParameterNames.IndexOf(t.Name);
+                    if (t.IsGenericType)
+                    {
+                        System.Type tt = t.GetGenericTypeDefinition();
+                        string genericTypeName = t.GetGenericTypeDefinition().FullName.Split('`')[0];
+                        string genericArgs = string.Join(",", t.GetGenericArguments().Select(GetTypeString));
+                        return $"{genericTypeName}{{{genericArgs}}}";
+                    }
+                    return t.FullName;
+                }
+
+                return GetTypeString(type);
             });
 
 
