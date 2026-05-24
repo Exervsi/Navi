@@ -187,7 +187,7 @@ namespace Navi.Markdown
                     string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(constructor);
                     result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
                 }
-                result[i,1] = items[i].Value;
+                result[i,1] = items[i].Value.Replace("\n", "");
             }
 
             return true;
@@ -232,7 +232,7 @@ namespace Navi.Markdown
                     result[i, 0] = '`' + method.Return.Type.ToString() + '`';
                     result[i, 1] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(items[i].Name, Navi.Core.SystemExtensions.String.PathBuilders.BuildUrl(items[i]));
                 }
-                result[i, 2] = items[i].Value;
+                result[i, 2] = items[i].Value.Replace("\n", "");
             }
 
             return true;
