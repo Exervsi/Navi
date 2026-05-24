@@ -62,7 +62,7 @@ public class Return : InfoItem
     /// <summary>
     /// Gets the full type name of the return parameter.
     /// </summary>
-    public string Type => Data.ParameterType.FullName;
+    public string Type => Data.ParameterType.Name;
 
     /// <summary>
     /// Gets the <see cref="ParameterInfo"/> associated with the return value.

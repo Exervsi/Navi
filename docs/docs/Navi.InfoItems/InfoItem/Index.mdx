@@ -9,9 +9,22 @@ Navi.InfoItems.InfoItem
 
 Represents a generic information item within a hierarchical documentation or data structure.
 
+## Properties
+
+| Type          | Property   | Description                                                       |
+| ------------- | ---------- | ----------------------------------------------------------------- |
+| `String`      | Name       | Gets the display name of the information item.                    |
+| `InfoItem`    | Item       |                                                                   |
+| `String`      | Key        | Gets the unique key identifying this information item.            |
+| `String`      | Value      | Gets the value associated with this information item.             |
+| `InfoItem`    | Parent     | Gets the parent  in the hierarchy, or null if this is the root.   |
+| `InfoItem[]`  | Children   | Gets the immediate child items of this information item.          |
+| `DocuTree`    | Root       | Gets the root DocuTree object to which this item belongs.         |
+| `Attribute[]` | Attributes | Gets the custom attributes associated with this information item. |
+
 ## Methods
 
-| Type                             | Method                                                   | Description                                                 |
-| -------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/InfoItem/GetMarkdown) | Returns a Markdown representation of this information item. |
+| Type               | Method                                                   | Description                                                 |
+| ------------------ | -------------------------------------------------------- | ----------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/InfoItem/GetMarkdown) | Returns a Markdown representation of this information item. |
 

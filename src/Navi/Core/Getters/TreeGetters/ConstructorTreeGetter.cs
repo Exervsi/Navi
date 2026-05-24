@@ -23,7 +23,6 @@ internal class ConstructorTreeGetter : InfoItemTreeGetter
             int typeParameterCount = 0;
 
             List<InfoItem> result = new List<InfoItem>();
-            result.AddRange(TypeParameters);
             result.AddRange(Parameters);
             return result.ToArray();
         }
@@ -32,8 +31,4 @@ internal class ConstructorTreeGetter : InfoItemTreeGetter
     internal InfoItems.Parameter[] Parameters => _constructorItem.Data.GetParameters()
                 .Select(x => new InfoItems.Parameter(x, _constructorItem))
                 .ToArray();
-
-    internal InfoItems.TypeParameter[] TypeParameters => _constructorItem.Data.GetGenericArguments()
-                .Select(x => new TypeParameter(x, _constructorItem))
-            .ToArray();
 }

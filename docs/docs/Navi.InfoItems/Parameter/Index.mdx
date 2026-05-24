@@ -15,9 +15,24 @@ Represents a parameter within a documentation tree, providing access to its name
 | -------------------------------------------------------- | ----------------------------------------- |
 | [Parameter(`ParameterInfo`, `InfoItem`)](./Constructors) | Initializes a new instance of the  class. |
 
+## Properties
+
+| Type            | Property   | Description                                                                 |
+| --------------- | ---------- | --------------------------------------------------------------------------- |
+| `String`        | Name       | Gets the name of the parameter.                                             |
+| `InfoItem`      | Item       |                                                                             |
+| `String`        | Key        | Gets the key associated with the parameter. Always returns an empty string. |
+| `String`        | Value      | Gets the XML documentation value for the parameter, if available.           |
+| `String`        | DataType   | Gets the data type of this item, which is always "Parameter".               |
+| `ParameterInfo` | Data       | Gets the reflection metadata for the parameter.                             |
+| `InfoItem`      | Parent     | Gets the parent  in the documentation tree.                                 |
+| `DocuTree`      | Root       | Gets the root  of the documentation tree.                                   |
+| `InfoItem[]`    | Children   | Gets the child items of this parameter.                                     |
+| `Attribute[]`   | Attributes | Gets or sets the attributes associated with this parameter.                 |
+
 ## Methods
 
-| Type                             | Method                                                    | Description                                         |
-| -------------------------------- | --------------------------------------------------------- | --------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Parameter/GetMarkdown) | Returns a Markdown representation of the parameter. |
+| Type               | Method                                                    | Description                                         |
+| ------------------ | --------------------------------------------------------- | --------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Parameter/GetMarkdown) | Returns a Markdown representation of the parameter. |
 

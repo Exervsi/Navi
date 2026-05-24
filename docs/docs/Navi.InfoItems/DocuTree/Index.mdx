@@ -16,10 +16,27 @@ Represents the root of a documentation tree for a .NET assembly, providing acces
 | ---------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | [DocuTree(`String`, `String`)](./Constructors) | Initializes a new instance of the  class, loading the specified assembly and its XML documentation. |
 
+## Properties
+
+| Type          | Property          | Description                                                               |
+| ------------- | ----------------- | ------------------------------------------------------------------------- |
+| `String`      | Name              | Gets the full name of the loaded assembly.                                |
+| `String`      | Path              | Gets or sets the path to the documentation or assembly.                   |
+| `InfoItem`    | Item              |                                                                           |
+| `String`      | Key               | Gets a key for this item. Always returns an empty string for .            |
+| `String`      | Value             | Gets or sets the value associated with this item.                         |
+| `InfoItem`    | Parent            | Gets the parent item. Always returns null for .                           |
+| `DocuTree`    | Root              | Gets the root of the documentation tree, which is this instance.          |
+| `InfoItem[]`  | Children          | Gets the immediate child items, which are the namespaces in the assembly. |
+| `Attribute[]` | Attributes        | Gets the attributes associated with this item. Always returns null for .  |
+| `String`      | AssemblyPath      | Gets the file path of the loaded assembly.                                |
+| `String`      | DocumentationPath | Gets the file path of the loaded XML documentation.                       |
+| `Namespace[]` | Namespaces        | Gets the namespaces defined in the loaded assembly.                       |
+
 ## Methods
 
-| Type                             | Method                                                           | Description                                                                                    |
-| -------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/DocuTree/GetMarkdown)         | Gets a markdown representation of the documentation tree.                                      |
-| `System.Void`                    | [PrintDocusaurus](../../Navi.InfoItems/DocuTree/PrintDocusaurus) | Exports the current DocuTree instance to a Docusaurus-compatible format at the specified path. |
+| Type               | Method                                                           | Description                                                                                    |
+| ------------------ | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/DocuTree/GetMarkdown)         | Gets a markdown representation of the documentation tree.                                      |
+| `Void`             | [PrintDocusaurus](../../Navi.InfoItems/DocuTree/PrintDocusaurus) | Exports the current DocuTree instance to a Docusaurus-compatible format at the specified path. |
 

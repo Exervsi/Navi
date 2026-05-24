@@ -10,7 +10,7 @@ namespace Navi.Tests.Types;
 /// Field Attribute for Testing
 /// </summary>
 [AttributeUsage(AttributeTargets.Field)]
-internal class TestFieldAttribute : Attribute
+public class TestFieldAttribute : Attribute
 {
     /// <summary>
     /// This is variable A for testing.

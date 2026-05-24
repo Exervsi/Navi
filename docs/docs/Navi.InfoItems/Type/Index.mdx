@@ -16,9 +16,29 @@ Represents a type (class, struct, etc.) in the documentation model, providing ac
 | ------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [Type(`Type`, `Namespace`)](./Constructors) | Initializes a new instance of the  class using reflection metadata and a parent namespace. |
 
+## Properties
+
+| Type              | Property       | Description                                                                              |
+| ----------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `String`          | Name           | Gets the name of the type.                                                               |
+| `InfoItem`        | Item           |                                                                                          |
+| `String`          | Key            | Gets the unique documentation key for this type.                                         |
+| `String`          | Value          | Gets the summary documentation value for this type, or an empty string if not available. |
+| `TypeInfo`        | Data           | Gets the reflection metadata for this type.                                              |
+| `String`          | FullName       | Gets the full name of the type.                                                          |
+| `InfoItem`        | Parent         | Gets the parent  in the documentation tree.                                              |
+| `DocuTree`        | Root           | Gets the root  of the documentation hierarchy.                                           |
+| `InfoItem[]`      | Children       | Gets the child members (constructors, methods, fields, properties) of this type.         |
+| `Constructor[]`   | Constructors   | Gets the constructors defined in this type.                                              |
+| `Method[]`        | Methods        | Gets the methods defined in this type.                                                   |
+| `Field[]`         | Fields         | Gets the fields defined in this type.                                                    |
+| `Property[]`      | Properties     | Gets the properties defined in this type.                                                |
+| `TypeParameter[]` | TypeParameters |                                                                                          |
+| `Attribute[]`     | Attributes     | Gets or sets the attributes applied to this type.                                        |
+
 ## Methods
 
-| Type                             | Method                                               | Description                                                                                                             |
-| -------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Type/GetMarkdown) | Generates a Markdown representation of this type, including its summary, constructors, properties, fields, and methods. |
+| Type               | Method                                               | Description                                                                                                             |
+| ------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Type/GetMarkdown) | Generates a Markdown representation of this type, including its summary, constructors, properties, fields, and methods. |
 

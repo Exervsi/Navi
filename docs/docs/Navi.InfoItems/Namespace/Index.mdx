@@ -9,9 +9,24 @@ Navi.InfoItems.Namespace
 
 Represents a namespace within the documentation tree, providing access to its child namespaces, types, and attributes.
 
+## Properties
+
+| Type          | Property   | Description                                                                         |
+| ------------- | ---------- | ----------------------------------------------------------------------------------- |
+| `String`      | Name       |                                                                                     |
+| `InfoItem`    | Item       |                                                                                     |
+| `String`      | Key        | Gets the key for this info item. Always returns an empty string for namespaces.     |
+| `String`      | Value      | Gets the value for this info item. Always returns an empty string for namespaces.   |
+| `InfoItem`    | Parent     | Gets the parent  of this namespace.                                                 |
+| `DocuTree`    | Root       | Gets the root  for this namespace.                                                  |
+| `InfoItem[]`  | Children   | Gets the child items of this namespace, including both nested namespaces and types. |
+| `Namespace[]` | Namespaces | Gets the nested namespaces within this namespace.                                   |
+| `Type[]`      | Types      | Gets the types defined within this namespace.                                       |
+| `Attribute[]` | Attributes | Gets the attributes applied to this namespace.                                      |
+
 ## Methods
 
-| Type                             | Method                                                    | Description                                          |
-| -------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Namespace/GetMarkdown) | Returns a markdown representation of this namespace. |
+| Type               | Method                                                    | Description                                          |
+| ------------------ | --------------------------------------------------------- | ---------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Namespace/GetMarkdown) | Returns a markdown representation of this namespace. |
 

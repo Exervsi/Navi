@@ -15,3 +15,15 @@ Represents a custom attribute applied to a code element, providing access to its
 | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
 | [Attribute(`CustomAttributeData`, `InfoItem`)](./Constructors) | Initializes a new instance of the  class with the specified attribute data and parent item. |
 
+## Properties
+
+| Type                  | Property   | Description                                                                |
+| --------------------- | ---------- | -------------------------------------------------------------------------- |
+| `String`              | Name       | Gets the name of the attribute type.                                       |
+| `CustomAttributeData` | Data       | Gets the underlying  instance for this attribute.                          |
+| `Type[]`              | Aruguments | Gets an array of argument types for the attribute's constructor arguments. |
+| `Object[]`            | Values     | Gets an array of values for the attribute's constructor arguments.         |
+| `InfoItem`            | Parent     | Gets the parent  to which this attribute is attached.                      |
+| `DocuTree`            | Root       | Gets the root  of the documentation hierarchy containing this attribute.   |
+| `InfoItem[]`          | Children   | Gets the child  elements of this attribute, if any.                        |
+

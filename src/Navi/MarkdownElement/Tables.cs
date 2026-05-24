@@ -219,12 +219,12 @@ namespace Navi.Markdown
                 int count = 0;
                 if (items[i] is Property property)
                 {
-                    result[i, 0] = '`' + property.Type.ToString() + '`';
+                    result[i, 0] = '`' + property.Type.Name.ToString() + '`';
                     result[i, 1] = items[i].Name;
                 }
                 if (items[i] is Field field)
                 {
-                    result[i, 0] = '`' + field.Type.ToString() + '`';
+                    result[i, 0] = '`' + field.Type.Name.ToString() + '`';
                     result[i, 1] = items[i].Name;
                 }
                 if (items[i] is Method method)

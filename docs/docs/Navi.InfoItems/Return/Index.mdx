@@ -15,9 +15,24 @@ Represents the return value information of a method, encapsulating metadata and 
 | --------------------------------------------------- | ----------------------------------------- |
 | [Return(`ParameterInfo`, `Method`)](./Constructors) | Initializes a new instance of the  class. |
 
+## Properties
+
+| Type            | Property   | Description                                                                    |
+| --------------- | ---------- | ------------------------------------------------------------------------------ |
+| `String`        | Name       | Gets the name of the return item, constructed from the parameter type name.    |
+| `InfoItem`      | Item       |                                                                                |
+| `String`        | Key        | Gets the key associated with this return item. Always returns an empty string. |
+| `String`        | Value      | Gets the XML documentation value for the return element, if available.         |
+| `String`        | Type       | Gets the full type name of the return parameter.                               |
+| `ParameterInfo` | Data       | Gets the  associated with the return value.                                    |
+| `InfoItem`      | Parent     | Gets the parent  of this return item.                                          |
+| `DocuTree`      | Root       | Gets the root  of the documentation hierarchy.                                 |
+| `InfoItem[]`    | Children   | Gets the child  elements of this return item.                                  |
+| `Attribute[]`   | Attributes | Gets or sets the attributes associated with this return item.                  |
+
 ## Methods
 
-| Type                             | Method                                                 | Description                                             |
-| -------------------------------- | ------------------------------------------------------ | ------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Return/GetMarkdown) | Generates a markdown representation of the return item. |
+| Type               | Method                                                 | Description                                             |
+| ------------------ | ------------------------------------------------------ | ------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Return/GetMarkdown) | Generates a markdown representation of the return item. |
 

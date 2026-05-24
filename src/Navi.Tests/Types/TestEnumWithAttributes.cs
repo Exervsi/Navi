@@ -9,7 +9,7 @@ namespace Navi.Tests.Types;
 /// <summary>
 /// Enum for Testing
 /// </summary>
-internal enum TestEnumWithAttributes
+public enum TestEnumWithAttributes
 {
     /// <summary>
     /// This is none.

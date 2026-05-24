@@ -17,9 +17,25 @@ Represents a constructor information item within the documentation model.
 | -------------------------------------------------------- | ----------------------------------------- |
 | [Constructor(`ConstructorInfo`, `Type`)](./Constructors) | Initializes a new instance of the  class. |
 
+## Properties
+
+| Type              | Property   | Description                                            |
+| ----------------- | ---------- | ------------------------------------------------------ |
+| `String`          | Name       | Gets the name of the constructor.                      |
+| `InfoItem`        | Item       |                                                        |
+| `String`          | Path       | Gets the documentation path for this constructor.      |
+| `String`          | Key        | Gets the XML documentation key for this constructor.   |
+| `String`          | Value      | Gets the XML documentation value for this constructor. |
+| `ConstructorInfo` | Data       | Gets the underlying  instance.                         |
+| `InfoItem`        | Parent     | Gets the parent  in the documentation tree.            |
+| `DocuTree`        | Root       | Gets the root  for this constructor.                   |
+| `InfoItem[]`      | Children   | Gets the child items of this constructor.              |
+| `Parameter[]`     | Parameters | Gets the parameters of the constructor.                |
+| `Attribute[]`     | Attributes | Gets the attributes applied to the constructor.        |
+
 ## Methods
 
-| Type                             | Method                                                      | Description                                                   |
-| -------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Constructor/GetMarkdown) | Gets the markdown documentation element for this constructor. |
+| Type               | Method                                                      | Description                                                   |
+| ------------------ | ----------------------------------------------------------- | ------------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Constructor/GetMarkdown) | Gets the markdown documentation element for this constructor. |
 

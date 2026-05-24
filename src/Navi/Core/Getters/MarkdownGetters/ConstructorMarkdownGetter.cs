@@ -21,7 +21,7 @@ internal struct ConstructorMarkdownGetter :InfoItemMarkdownGetter
     {
         Page result = new Page();
 
-        string header = _constructorItem.Key.Replace($"M:{_constructorItem.Data.DeclaringType.FullName}.#ctor", _constructorItem.Parent.Name);
+        string header = _constructorItem.Name;
 
         if (!header.EndsWith(")"))
             header += "()";
@@ -33,7 +33,7 @@ internal struct ConstructorMarkdownGetter :InfoItemMarkdownGetter
         string parameterString = "**Parameters :** \n\n";
 
         foreach (InfoItems.Parameter parameter in _constructorItem.Parameters)
-            parameterString += "`" + parameter.Data.ParameterType + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
+            parameterString += "`" + parameter.Data.ParameterType.Name + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
 
         if (_constructorItem.Parameters.Length > 0)
         {

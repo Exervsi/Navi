@@ -16,9 +16,24 @@ Represents a type parameter within the documentation tree structure.
 | --------------------------------------------------- | ----------------------------------------- |
 | [TypeParameter(`Type`, `InfoItem`)](./Constructors) | Initializes a new instance of the  class. |
 
+## Properties
+
+| Type          | Property   | Description                                                                    |
+| ------------- | ---------- | ------------------------------------------------------------------------------ |
+| `String`      | Name       | Gets the name of the type parameter.                                           |
+| `InfoItem`    | Item       |                                                                                |
+| `String`      | Key        | Gets the key associated with this item. Always returns an empty string for .   |
+| `String`      | Value      | Gets the value associated with this item. Always returns an empty string for . |
+| `String`      | DataType   | Gets the data type descriptor for this item. Always returns "Parameter".       |
+| `Type`        | Data       | Gets the underlying  represented by this type parameter.                       |
+| `InfoItem`    | Parent     | Gets the parent  in the documentation tree.                                    |
+| `DocuTree`    | Root       | Gets the root  of the documentation tree to which this item belongs.           |
+| `InfoItem[]`  | Children   | Gets the child items of this type parameter.                                   |
+| `Attribute[]` | Attributes | Gets or sets the attributes associated with this type parameter.               |
+
 ## Methods
 
-| Type                             | Method                                                        | Description                                               |
-| -------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/TypeParameter/GetMarkdown) | Returns a markdown representation of this type parameter. |
+| Type               | Method                                                        | Description                                               |
+| ------------------ | ------------------------------------------------------------- | --------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/TypeParameter/GetMarkdown) | Returns a markdown representation of this type parameter. |
 

@@ -1,7 +1,10 @@
-﻿using Navi.Core.SystemExtensions.String;
+﻿using Navi.Core.Getters.TreeGetters;
+using Navi.Core.Getters.XmlGetters;
+using Navi.Core.SystemExtensions.String;
 using Navi.Markdown;
 using System.Reflection;
 using System.Reflection.Metadata;
+using System.Reflection.PortableExecutable;
 using System.Xml.Linq;
 
 namespace Navi.InfoItems
@@ -12,6 +15,10 @@ namespace Navi.InfoItems
     /// </summary>
     public class Type : InfoItem
     {
+
+        private TypeTreeGetter _treeGetter => new TypeTreeGetter(this);
+        private TypeXmlGetter _typeXmlGetter => new TypeXmlGetter(this);
+
         /// <summary>
         /// Gets the name of the type.
         /// </summary>
@@ -31,20 +38,12 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the unique documentation key for this type.
         /// </summary>
-        public string Key => $"T:{Data.FullName}";
+        public string Key => _typeXmlGetter.Key;
 
         /// <summary>
         /// Gets the summary documentation value for this type, or an empty string if not available.
         /// </summary>
-        public string Value
-        {
-            get
-            {
-                if (Element is null || Element.Element("summary") is null)
-                    return "";
-                return Element.Element("summary").Value.Trim();
-            }
-        }
+        public string Value => _typeXmlGetter.Value;
 
         /// <summary>
         /// Gets the reflection metadata for this type.
@@ -78,27 +77,29 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the child members (constructors, methods, fields, properties) of this type.
         /// </summary>
-        public InfoItem[] Children { get; }
+        public InfoItem[] Children => _treeGetter.Children;
 
         /// <summary>
         /// Gets the constructors defined in this type.
         /// </summary>
-        public Constructor[] Constructors { get; }
+        public Constructor[] Constructors => _treeGetter.Constructors;
 
         /// <summary>
         /// Gets the methods defined in this type.
         /// </summary>
-        public Method[] Methods { get; }
+        public Method[] Methods => _treeGetter.Methods;
 
         /// <summary>
         /// Gets the fields defined in this type.
         /// </summary>
-        public Field[] Fields { get; }
+        public Field[] Fields => _treeGetter.Fields;
 
         /// <summary>
         /// Gets the properties defined in this type.
         /// </summary>
-        public Property[] Properties { get; }
+        public Property[] Properties => _treeGetter.Properties;
+
+        public TypeParameter[] TypeParameters => _treeGetter.TypeParameters;
 
         /// <summary>
         /// Gets or sets the attributes applied to this type.
@@ -118,43 +119,22 @@ namespace Navi.InfoItems
         public Type(System.Type type, Namespace parent)
         {
             Name = type.Name;
+
             Data = type.GetTypeInfo();
 
             // Parent and children initialization
             Parent = parent;
-            List<InfoItem> list = new List<InfoItem>();
-            Constructors = Data.GetConstructors(BindingFlags.Instance |
-                                                  BindingFlags.Static |
-                                                  BindingFlags.Public |
-                                                  BindingFlags.DeclaredOnly)
-                .Select(x => new Constructor(x, this))
-                .ToArray();
 
-            list.AddRange(Constructors);
+            if (TypeParameters.Length > 0)
+            {
+                Name = Name.Split('`')[0] + '<';
+                for (int i = 0; i < TypeParameters.Length; i++)
+                    Name += TypeParameters[i].Data.Name + ',';
 
-            Methods = Data.GetMethods(BindingFlags.Instance |
-                                      BindingFlags.Static |
-                                      BindingFlags.Public |
-                                      BindingFlags.DeclaredOnly)
-                .Where(x => x.Name.StartsWith("get_") == false && x.Name.StartsWith("set_") == false)
-                .Select(x => new Method(x, this))
-                .ToArray();
+                Name = Name.Substring(0, Name.Length - 1);
+                Name += '>';
+            }
 
-            list.AddRange(Methods);
-
-            Fields = Data.GetFields(BindingFlags.Public)
-                .Select(x => new Field(x, this))
-                .ToArray();
-
-            list.AddRange(Fields);
-
-            Properties = Data.GetProperties(BindingFlags.Public)
-                .Select(x => new Property(x, this))
-                .ToArray();
-
-            list.AddRange(Properties);
-
-            Children = list.ToArray();
         }
 
         /// <summary>

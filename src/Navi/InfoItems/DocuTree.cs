@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Navi.Core.Extensions.Collections;
+using System.Diagnostics;
 
 namespace Navi.InfoItems
 {
@@ -109,6 +110,18 @@ namespace Navi.InfoItems
 
             if (Assembly == null || Documentation == null)
                 throw new Exception("Failed to load assembly or documentation.");
+
+            try
+            {
+                Assembly.GetTypes();
+            }
+            catch (System.Reflection.ReflectionTypeLoadException ex)
+            {
+                foreach (var inner in ex.LoaderExceptions)
+                {
+                    Debug.WriteLine(inner.Message);
+                }
+            }
 
             List<Namespace> list = Assembly
                 .GetTypes()

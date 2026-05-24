@@ -9,7 +9,7 @@ namespace Navi.Tests.Types;
 /// <summary>
 /// Class for Testing
 /// </summary>
-internal class TestClass
+public class TestClass
 {
     /// <summary>
     /// This is a get property.
@@ -64,4 +64,19 @@ internal class TestClass
     }
 
     public int NoCommentMethod(int a) { return 0; }
+
+    /// <summary>
+    /// This is a test method with some comments.
+    /// </summary>
+    /// <param name="a">A</param>
+    public int SomeCommentMethod(int a, int b) { return 0; }
+
+    /// <summary>
+    /// This is a test method with a type parameter.
+    /// </summary>
+    /// <typeparam name="T">The type of the values to compare.</typeparam>
+    /// <param name="a">A</param>
+    /// <param name="b">B</param>
+    /// <returns>A</returns>
+    public T MethodWithATypeParameter<T>(T a, T b) { return a; }
 }

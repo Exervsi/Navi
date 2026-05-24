@@ -40,7 +40,7 @@ internal struct MethodMarkdownGetter :InfoItemMarkdownGetter
 
 
         foreach (InfoItems.Parameter parameter in _methodItem.Parameters)
-        parameterString += "`" + parameter.Data.ParameterType + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
+        parameterString += "`" + parameter.Data.ParameterType.Name + "` " + parameter.Name + " : " + parameter.Value + "\n\n";
 
         if (_methodItem.Parameters.Length > 0)
         {

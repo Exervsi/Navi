@@ -81,11 +81,6 @@ namespace Navi.InfoItems
         public InfoItem[] Children => _treeGetter.Children;
 
         /// <summary>
-        /// Gets the type parameters for this constructor, if any.
-        /// </summary>
-        public TypeParameter[] TypeParameters => _treeGetter.TypeParameters;
-
-        /// <summary>
         /// Gets the parameters of the constructor.
         /// </summary>
         public Parameter[] Parameters => _treeGetter.Parameters;
@@ -102,11 +97,20 @@ namespace Navi.InfoItems
         /// <param name="parent">The parent type of the constructor.</param>
         public Constructor(ConstructorInfo constructor, Type parent)
         {
-            Name = constructor.Name;
+            Name = parent.Name + '(';
             Data = constructor;
             Parent = parent;
 
             Attributes = new Attribute[0];
+
+            if (Parameters.Length > 0)
+            {
+                foreach (Parameter parameter in Parameters)
+                    Name += parameter.Data.ParameterType.Name + ',';
+                Name = Name.Substring(0, Name.Length - 1);
+            }
+            Name += ')';
+
         }
 
         /// <summary>

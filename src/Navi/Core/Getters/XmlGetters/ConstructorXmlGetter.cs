@@ -20,16 +20,22 @@ internal class ConstructorXmlGetter : InfoItemXmlGetter
     {
         get
         {
-            Method methodItem = _infoItem as Method;
             string result = $"M:{_constructorItem.Data.DeclaringType.FullName}.#ctor";
-
-            if (_constructorItem.Data.IsGenericMethod)
-                result += "``" + _constructorItem.TypeParameters.Length;
 
             if (_constructorItem.Parameters.Length == 0)
                 return result;
 
-            IEnumerable<string> parameterStrings = _constructorItem.Parameters.Select(x => x.Data.ParameterType.FullName);
+            IEnumerable<string> parameterStrings = _constructorItem.Parameters.Select(x =>
+            {
+                var type = x.Data.ParameterType;
+                List<string> typeParameterNames = (_constructorItem.Parent as InfoItems.Type).TypeParameters.Select(x => x.Name).ToList();
+                if (typeParameterNames.Contains(type.Name))
+                    return "`" + typeParameterNames.IndexOf(type.Name);
+
+                return type.FullName;
+            });
+
+
             result += $"({string.Join(",", parameterStrings)})";
 
             return result;

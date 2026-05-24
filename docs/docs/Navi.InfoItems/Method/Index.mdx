@@ -15,9 +15,27 @@ Represents a method within the documentation model, encapsulating metadata, para
 | ---------------------------------------------- | ------------------------------------------------------------------------------ |
 | [Method(`MethodInfo`, `Type`)](./Constructors) | Initializes a new instance of the  class using the specified  and parent type. |
 
+## Properties
+
+| Type              | Property       | Description                                                                              |
+| ----------------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `String`          | Name           | Gets the name of the method.                                                             |
+| `String`          | Path           | Gets the documentation URL path for this method.                                         |
+| `InfoItem`        | Item           |                                                                                          |
+| `String`          | Key            | Gets the unique key for this method, as provided by the getter.                          |
+| `String`          | Value          | Gets the value representation for this method, as provided by the getter.                |
+| `MethodInfo`      | Data           | Gets the underlying  reflected from the method.                                          |
+| `InfoItem`        | Parent         | Gets the parent  of this method, if any.                                                 |
+| `DocuTree`        | Root           | Gets the root  for this method.                                                          |
+| `InfoItem[]`      | Children       | Gets the collection of child s, including type parameters, parameters, and return value. |
+| `TypeParameter[]` | TypeParameters | Gets the type parameters for this method, if any.                                        |
+| `Parameter[]`     | Parameters     | Gets the parameters for this method.                                                     |
+| `Return`          | Return         | Gets the return value information for this method.                                       |
+| `Attribute[]`     | Attributes     | Gets the attributes applied to this method.                                              |
+
 ## Methods
 
-| Type                             | Method                                                 | Description                                                                    |
-| -------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Method/GetMarkdown) | Generates a markdown representation of this method for documentation purposes. |
+| Type               | Method                                                 | Description                                                                    |
+| ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Method/GetMarkdown) | Generates a markdown representation of this method for documentation purposes. |
 

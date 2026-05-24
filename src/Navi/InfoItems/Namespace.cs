@@ -8,32 +8,43 @@ using System.Reflection;
 
 namespace Navi.InfoItems
 {
-/// <summary>
-/// Represents a namespace within the documentation tree, providing access to its child namespaces, types, and attributes.
-/// </summary>
-/// <remarks>
-/// The <see cref="Namespace"/> class is an <see cref="InfoItem"/> that models a .NET namespace, including its contained types and nested namespaces.
-/// It is constructed with a namespace name, a parent <see cref="DocuTree"/>, and an array of <see cref="System.Type"/> objects.
-/// </remarks>
-public class Namespace : InfoItem
-{
+    /// <summary>
+    /// Represents a namespace within the documentation tree, providing access to its child namespaces, types, and attributes.
+    /// </summary>
+    /// <remarks>
+    /// The <see cref="Namespace"/> class is an <see cref="InfoItem"/> that models a .NET namespace, including its contained types and nested namespaces.
+    /// It is constructed with a namespace name, a parent <see cref="DocuTree"/>, and an array of <see cref="System.Type"/> objects.
+    /// </remarks>
+    public class Namespace : InfoItem
+    {
         private NamespaceMarkdownGetter _markdownGetter => new NamespaceMarkdownGetter(this);
         private NamespaceXmlGetter _xmlGetter => new NamespaceXmlGetter(this);
         private NamespaceTreeGetter _treeGetter => new NamespaceTreeGetter(this);
 
         public string Name { get; }
 
-    /// <summary>
-    /// Gets or sets the internal path of the namespace.
-    /// </summary>
-    internal string _path { get; set; }
+        /// <summary>
+        /// Gets or sets the internal path of the namespace.
+        /// </summary>
+        internal string _path { get; set; }
 
-    /// <summary>
-    /// Gets the child <see cref="InfoItem"/> with a name ending with the specified string.
-    /// </summary>
-    /// <param name="name">The name suffix to search for.</param>
-    /// <returns>The matching <see cref="InfoItem"/>, or null if not found.</returns>
-    public InfoItem this[string name] => Children.FirstOrDefault(x => x.Name.EndsWith(name));
+        /// <summary>
+        /// Gets the child <see cref="InfoItem"/> with a name ending with the specified string.
+        /// </summary>
+        /// <param name="name">The name suffix to search for.</param>
+        /// <returns>The matching <see cref="InfoItem"/>, or null if not found.</returns>
+        public InfoItem this[string name] => Children.FirstOrDefault(x =>
+        {
+            if (x.Name.Contains("<"))
+            {
+                string test = name + "<";
+                x.Name.Contains(test);
+                return true;
+            }
+            if (x.Name.EndsWith(name))
+                return true;
+            return false;
+        });
 
     /// <summary>
     /// Gets the key for this info item. Always returns an empty string for namespaces.

@@ -16,9 +16,27 @@ Represents a property within the documentation model, providing metadata and acc
 | -------------------------------------------------- | ----------------------------------------- |
 | [Property(`PropertyInfo`, `Type`)](./Constructors) | Initializes a new instance of the  class. |
 
+## Properties
+
+| Type           | Property   | Description                                                                                               |
+| -------------- | ---------- | --------------------------------------------------------------------------------------------------------- |
+| `String`       | Name       | Gets or sets the name of the property.                                                                    |
+| `InfoItem`     | Item       |                                                                                                           |
+| `String`       | Key        | Gets the unique key for this property, used for documentation lookup.                                     |
+| `String`       | Value      | Gets the summary value from the XML documentation for this property, or an empty string if not available. |
+| `PropertyInfo` | Data       | Gets the underlying  for this property.                                                                   |
+| `Type`         | Type       | Gets the type of the property.                                                                            |
+| `Boolean`      | IsGettable | Gets a value indicating whether the property can be read.                                                 |
+| `Boolean`      | IsSettable | Gets a value indicating whether the property can be written to.                                           |
+| `Boolean`      | IsStatic   | Gets a value indicating whether the property is static.                                                   |
+| `InfoItem`     | Parent     | Gets the parent  of this property.                                                                        |
+| `DocuTree`     | Root       | Gets the root  for this property.                                                                         |
+| `InfoItem[]`   | Children   | Gets or sets the child items of this property.                                                            |
+| `Attribute[]`  | Attributes | Gets or sets the attributes applied to this property.                                                     |
+
 ## Methods
 
-| Type                             | Method                                                   | Description                                         |
-| -------------------------------- | -------------------------------------------------------- | --------------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Property/GetMarkdown) | Returns a markdown representation of this property. |
+| Type               | Method                                                   | Description                                         |
+| ------------------ | -------------------------------------------------------- | --------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Property/GetMarkdown) | Returns a markdown representation of this property. |
 

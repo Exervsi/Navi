@@ -15,9 +15,24 @@ Represents a field within a documentation tree, providing access to metadata, at
 | -------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | [Field(`FieldInfo`, `Type`)](./Constructors) | Initializes a new instance of the  class using the specified field metadata and parent type. |
 
+## Properties
+
+| Type          | Property   | Description                                                                              |
+| ------------- | ---------- | ---------------------------------------------------------------------------------------- |
+| `String`      | Name       | Gets or sets the name of the field.                                                      |
+| `InfoItem`    | Item       |                                                                                          |
+| `String`      | Key        | Gets a unique key for the field, used for documentation lookup.                          |
+| `String`      | Value      | Gets the summary documentation value for the field, or an empty string if not available. |
+| `Type`        | Type       | Gets the type of the field.                                                              |
+| `FieldInfo`   | Data       | Gets the reflection metadata for the field.                                              |
+| `InfoItem`    | Parent     | Gets the parent  in the documentation tree.                                              |
+| `DocuTree`    | Root       | Gets the root  of the documentation tree.                                                |
+| `InfoItem[]`  | Children   | Gets or sets the child items of this field.                                              |
+| `Attribute[]` | Attributes | Gets or sets the attributes applied to this field.                                       |
+
 ## Methods
 
-| Type                             | Method                                                | Description                                     |
-| -------------------------------- | ----------------------------------------------------- | ----------------------------------------------- |
-| `Navi.Markdown.IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Field/GetMarkdown) | Returns a markdown representation of the field. |
+| Type               | Method                                                | Description                                     |
+| ------------------ | ----------------------------------------------------- | ----------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Field/GetMarkdown) | Returns a markdown representation of the field. |
 

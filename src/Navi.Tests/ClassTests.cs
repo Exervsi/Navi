@@ -10,7 +10,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Navi.Tests;
 
-public class ClassTests
+public class TypedClassTests
 {
     InfoItems.Type? type;
 
@@ -26,7 +26,7 @@ public class ClassTests
         DocuTree docuTree = new DocuTree(dllPath, xmlPath);
         docuTree.Path = @".";
 
-        type = docuTree["Navi.Tests"]["Types"]["TestClass"] as InfoItems.Type;
+        type = docuTree["Navi.Tests"]["Types"]["TestTypedClass<T>"] as InfoItems.Type;
     }
 
     [Test]
@@ -43,25 +43,20 @@ public class ClassTests
 
         Property[] properties = type.Properties;
         properties.Should().NotBeNull();
-        properties.Length.Should().Be(3);
+        properties.Length.Should().Be(2);
 
         properties[0].Value.Should().Be("This is a get property.");
         properties[1].Value.Should().Be("This is both a get and set property.");
-        properties[2].Value.Should().Be("This is a static property.");
 
-        properties[0].Type.Should().Be(typeof(int));
-        properties[1].Type.Should().Be(typeof(bool));
-        properties[2].Type.Should().Be(typeof(string));
+        properties[0].Type.Name.Should().Be("T");
+        properties[1].Type.Name.Should().Be("T");
 
         properties[0].IsGettable.Should().BeTrue(); 
         properties[1].IsGettable.Should().BeTrue();
-        properties[2].IsGettable.Should().BeTrue();
         properties[0].IsSettable.Should().BeFalse();
         properties[1].IsSettable.Should().BeTrue();
-        properties[2].IsSettable.Should().BeTrue();
         properties[0].IsStatic.Should().BeFalse();
         properties[1].IsStatic.Should().BeFalse();
-        properties[2].IsGettable.Should().BeTrue();
     }
 
     [Test]
@@ -84,18 +79,18 @@ public class ClassTests
 
         string result = constructors[0].GetMarkdown().Markdown;
 
-        string expected = "# TestClass()\n\n" +
+        string expected = "# TestTypedClass<T>()\n\n" +
                           "And this an empty test constructor.\n\n";
 
         result.Should().Be(expected);
 
         result = constructors[1].GetMarkdown().Markdown;
 
-        expected = "# TestClass(System.Int32,System.Boolean)\n\n" +
+        expected = "# TestTypedClass<T>(T,T)\n\n" +
                    "And this a non-empty test constructor.\n\n" +
                    "**Parameters :** \n\n" +
-                   "`System.Int32` parameterGet : This is the get parameter.\n\n" +
-                   "`System.Boolean` parameterGetSet : This is the get and set parameter.\n\n";
+                   "`T` parameterGet : This is the get parameter.\n\n" +
+                   "`T` parameterGetSet : This is the get and set parameter.\n\n";
 
         result.Should().Be(expected);
 
@@ -110,44 +105,9 @@ public class ClassTests
 
         Method[] methods = type.Methods;
         methods.Should().NotBeNull();
-        methods.Length.Should().Be(3);
+        methods.Length.Should().Be(0);
 
-        methods[0].Value.Should().Be("This is a test method.");
-        methods[1].Value.Should().Be("This is a test method with parameters.");
-        methods[2].Value.Should().Be("");
 
-        Parameter[] parameters = methods[1].Parameters;
-        parameters.Length.Should().Be(2);
-        parameters[0].Value.Should().Be("A");
-        parameters[1].Value.Should().Be("B");
-
-        parameters = methods[2].Parameters;
-        parameters[0].Value.Should().Be("");
-
-        Return returnItem = methods[1].Return;
-        returnItem.Value.Should().Be("This returns zero.");
-
-        string result = methods[0].GetMarkdown().Markdown;
-
-        string expected = "# System.Void EmptyMethod()\n\n" +
-                          "This is a test method.\n\n" +
-                          "**Returns :** `System.Void`\n\n";
-
-        result.Should().Be(expected);
-
-        result = methods[1].GetMarkdown().Markdown;
-
-        expected = "# System.Int32 Method(System.Int32,System.Int32)\n\n" +
-                   "This is a test method with parameters.\n\n" +
-                   "**Parameters :** \n\n" +
-                   "`System.Int32` a : A\n\n`" +
-                   "System.Int32` b : B\n\n" +
-                   "**Returns :** `System.Int32`\n\n";
-
-        result.Should().Be(expected);
-        //methods[0].Path.Should().Be("./Navi.Tests/Navi.Tests.Types/TestClass/EmptyMethod");
-        //methods[1].Path.Should().Be("./Navi.Tests/Navi.Tests.Types/TestClass/Method");
-        //methods[2].Path.Should().Be("./Navi.Tests/Navi.Tests.Types/TestClass/NoCommentMethod");
     }
     [Test]
     public void GetMarkdown()
@@ -159,8 +119,18 @@ public class ClassTests
 
 
 
-        string expected = "# TestClass\n\nNavi.Tests.Types.TestClass\n\nClass for Testing\n\n## Constructors\n\n| Constructor                                                                          | Description                            |\n| ------------------------------------------------------------------------------------ | -------------------------------------- |\n| [.ctor(](../../Navi.Tests/Navi.Tests.Types/TestClass/Constructors)                   | And this an empty test constructor.    |\n| [.ctor(`Int32`, `Boolean`](../../Navi.Tests/Navi.Tests.Types/TestClass/Constructors) | And this a non-empty test constructor. |\n\n## Properties\n\n| Type             | Property        | Description                          |\n| ---------------- | --------------- | ------------------------------------ |\n| `System.Int32`   | ParameterGet    | This is a get property.              |\n| `System.Boolean` | ParameterGetSet | This is both a get and set property. |\n| `System.String`  | StaticParameter | This is a static property.           |\n\n## Methods\n\n| Type           | Method                                                                         | Description                            |\n| -------------- | ------------------------------------------------------------------------------ | -------------------------------------- |\n| `System.Void`  | [EmptyMethod](../../Navi.Tests/Navi.Tests.Types/TestClass/EmptyMethod)         | This is a test method.                 |\n| `System.Int32` | [Method](../../Navi.Tests/Navi.Tests.Types/TestClass/Method)                   | This is a test method with parameters. |\n| `System.Int32` | [NoCommentMethod](../../Navi.Tests/Navi.Tests.Types/TestClass/NoCommentMethod) |                                        |\n\n";
-
+        string expected = "# TestTypedClass<T>\n\n" +
+            "Navi.Tests.Types.TestTypedClass`1\n\n" +
+            "Class for Testing\n\n" +
+            "## Constructors\n\n" +
+            "| Constructor                                   | Description                            |\n" +
+            "| --------------------------------------------- | -------------------------------------- |\n" +
+            "| [TestTypedClass<T>()](./Constructors)         | And this an empty test constructor.    |\n" +
+            "| [TestTypedClass<T>(`T`, `T`)](./Constructors) | And this a non-empty test constructor. |\n\n" +
+            "## Properties\n\n| Type | Property        | Description                          |\n" +
+            "| ---- | --------------- | ------------------------------------ |\n" +
+            "| `T`  | ParameterGet    | This is a get property.              |\n" +
+            "| `T`  | ParameterGetSet | This is both a get and set property. |\n\n";
 
         result.Should().Be(expected);
 

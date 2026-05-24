@@ -28,7 +28,15 @@ internal class MethodXmlGetter : InfoItemXmlGetter
             if (methodItem.Parameters.Length == 0)
                 return result;
 
-            IEnumerable<string> parameterStrings = methodItem.Parameters.Select(x => x.Data.ParameterType.FullName);
+            IEnumerable<string> parameterStrings = methodItem.Parameters.Select(x =>
+            {
+                var type = x.Data.ParameterType;
+                List<string> typeParameterNames = methodItem.TypeParameters.Select(x => x.Name).ToList();
+                if (typeParameterNames.Contains(type.Name))
+                    return "``" + typeParameterNames.IndexOf(type.Name);
+                
+                return type.FullName;
+            });
             result += $"({string.Join(",", parameterStrings)})";
 
             return result;
