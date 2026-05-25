@@ -35,5 +35,13 @@ public class NamespaceTests
 
         docuTree.PrintDocusaurus("C:/Users/Matthewa/Desktop/NaviDocs/");
 
+
+
+        string root = $@"C:\Users\{Environment.UserName}\source\repos\";
+        string architecture = root + @"DotNet\Rothelowman\Libraries\Rothelowman.Architecture\bin\Debug\net8.0\Rothelowman.Architecture";
+
+        docuTree = new DocuTree(architecture + ".dll", architecture + ".xml");
+        docuTree.PrintDocusaurus(@"C:\Users\{Environment.UserName}\Desktop\");
+
     }
 }

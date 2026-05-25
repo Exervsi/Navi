@@ -173,13 +173,13 @@ namespace Navi.MarkdownElement
                 {
                     string name = ns.Name;
                     string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(ns);
-                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
+                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path + "/Index.mdx");
                 }
                 if (items[i] is InfoItems.Type type)
                 {
                     string name = type.Name;
                     string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(type);
-                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path);
+                    result[i, 0] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(name, path + "/Index.mdx");
                 }
                 if (items[i] is Constructor constructor)
                 {
@@ -230,7 +230,8 @@ namespace Navi.MarkdownElement
                 if (items[i] is Method method)
                 {
                     result[i, 0] = '`' + method.Return.Type.ToString() + '`';
-                    result[i, 1] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(items[i].Name, Navi.Core.SystemExtensions.String.PathBuilders.BuildUrl(items[i]));
+                    string path = Navi.Core.SystemExtensions.String.PathBuilders.BuildChildUrl(method);
+                    result[i, 1] = Navi.Core.SystemExtensions.String.PathBuilders.HyperLink(items[i].Name, path);
                 }
                 result[i, 2] = items[i].Value.Replace("\n", "");
             }

@@ -25,7 +25,6 @@ Represents a type (class, struct, etc.) in the documentation model, providing ac
 | `String`          | Key            | Gets the unique documentation key for this type.                                         |
 | `String`          | Value          | Gets the summary documentation value for this type, or an empty string if not available. |
 | `TypeInfo`        | Data           | Gets the reflection metadata for this type.                                              |
-| `String`          | FullName       | Gets the full name of the type.                                                          |
 | `InfoItem`        | Parent         | Gets the parent  in the documentation tree.                                              |
 | `DocuTree`        | Root           | Gets the root  of the documentation hierarchy.                                           |
 | `InfoItem[]`      | Children       | Gets the child members (constructors, methods, fields, properties) of this type.         |
@@ -38,7 +37,7 @@ Represents a type (class, struct, etc.) in the documentation model, providing ac
 
 ## Methods
 
-| Type               | Method                                               | Description                                                                                                             |
-| ------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `IMarkdownElement` | [GetMarkdown](../../Navi.InfoItems/Type/GetMarkdown) | Generates a Markdown representation of this type, including its summary, constructors, properties, fields, and methods. |
+| Type               | Method                       | Description                                                                                                             |
+| ------------------ | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `IMarkdownElement` | [GetMarkdown](./GetMarkdown) | Generates a Markdown representation of this type, including its summary, constructors, properties, fields, and methods. |
 

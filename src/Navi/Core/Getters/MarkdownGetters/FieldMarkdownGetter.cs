@@ -17,7 +17,7 @@ internal struct FieldMarkdownGetter :InfoItemMarkdownGetter
         _fieldItem = fieldItem;
     }
 
-    public string Name => _fieldItem.Name;
+    public string Name => _fieldItem.Data.Name;
 
     public IMarkdownElement Markdown() => new Page();
 
