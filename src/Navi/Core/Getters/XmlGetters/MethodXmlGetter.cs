@@ -59,9 +59,12 @@ internal class MethodXmlGetter : InfoItemXmlGetter
     {
         get
         {
-            if (Element is null)
+            if (Element is null || Element.Element("summary") is null)
                 return "";
+
+            
             return Element.Element("summary").Value.Trim();
+
         }
     }
 
