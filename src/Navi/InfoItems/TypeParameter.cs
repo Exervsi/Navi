@@ -1,4 +1,5 @@
 ﻿using Navi.Core.Getters.MarkdownGetters;
+using Navi.Core.Getters.TreeGetters;
 using Navi.Markdown;
 using System.Reflection;
 
@@ -10,11 +11,13 @@ namespace Navi.InfoItems
     /// </summary>
     public class TypeParameter : InfoItem
     {
+        private TypeParameterMarkdownGetter _markdownGetter => new TypeParameterMarkdownGetter(this);
+        private LeafTreeGetter _treeGetter => new LeafTreeGetter(this);
 
         /// <summary>
         /// Gets the name of the type parameter.
         /// </summary>
-        public string Name { get; }
+        public string Name => _markdownGetter.Name;
 
         /// <summary>
         /// Gets the child <see cref="InfoItem"/> with the specified name, or <c>null</c> if not found.
@@ -33,11 +36,6 @@ namespace Navi.InfoItems
         public string Value => "";
 
         /// <summary>
-        /// Gets the data type descriptor for this item. Always returns "Parameter".
-        /// </summary>
-        public string DataType => "Parameter";
-
-        /// <summary>
         /// Gets the underlying <see cref="System.Type"/> represented by this type parameter.
         /// </summary>
         public System.Type Data { get; }
@@ -50,26 +48,17 @@ namespace Navi.InfoItems
         /// <summary>
         /// Gets the root <see cref="DocuTree"/> of the documentation tree to which this item belongs.
         /// </summary>
-        public DocuTree Root
-        {
-            get
-            {
-                InfoItem parent = Parent;
-                while (parent.Parent is not null)
-                    parent = parent.Parent;
-                return parent as DocuTree;
-            }
-        }
+        public DocuTree  Root => _treeGetter.Root;
 
         /// <summary>
         /// Gets the child items of this type parameter.
         /// </summary>
-        public InfoItem[] Children { get; }
+        public InfoItem[] Children => _treeGetter.Children;
 
         /// <summary>
         /// Gets or sets the attributes associated with this type parameter.
         /// </summary>
-        public Attribute[] Attributes { get; set; }
+        public Attribute[] Attributes => _treeGetter.Attributes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeParameter"/> class.
@@ -78,7 +67,6 @@ namespace Navi.InfoItems
         /// <param name="constructorItem">The parent <see cref="InfoItem"/> (typically a constructor or method).</param>
         public TypeParameter(System.Type typeParameter, InfoItem constructorItem)
         {
-            Name = typeParameter.Name;
             Data = typeParameter;
             Parent = constructorItem;
         }
@@ -87,9 +75,7 @@ namespace Navi.InfoItems
         /// Returns a markdown representation of this type parameter.
         /// </summary>
         /// <returns>A new <see cref="Markdown.Page"/> instance.</returns>
-        public IMarkdownElement GetMarkdown()
-        {
-            return new Markdown.Page();
-        }
+        public IMarkdownElement GetMarkdown() => _markdownGetter.Markdown();
+        
     }
 }
